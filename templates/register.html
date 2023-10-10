@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class ="container">
+    <form action ="/register" method ="POST">
+        <h2> This is a register page</h2>
+        <p> User Name</p>
+        <p><input type ="text" id = "nm" name ="nm"/></p>
+        <p>Email</p>
+        <p><input type ="text" id = "email" name ="email"></p>
+        <p>Password</p>
+        <p><input type="text" name="pword" id="pword"></p>
+        <button type=" submit" name ="submit">submit</button>
+    </form> 
+
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <h1>{{title}}</h1>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h2> </h2>
+    {% if current_session %}
+        <h2>Hello {{ current_session }}</h2>
+    {% endif %}
+    <h2>
+
+
+
+</body>
+{% endblock %}
+
