@@ -16,11 +16,11 @@ def home():
     current_session = session.get('user')
     return render_template('index.html',title=title,current_session=current_session)
 
-@app.route('/about')
+@app.route('/trainer')
 def about():
-    title= "about"
+    title= "Trainers"
     current_session = session.get('user')
-    return render_template('about.html',title=title,current_session=current_session)
+    return render_template('trainer.html',title=title,current_session=current_session)
 
 @app.route('/Home')
 def backtohomepage():
