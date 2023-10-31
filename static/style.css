@@ -52,3 +52,20 @@ a :active {
 
   }
 
+
+ .logbutton{
+    background-color: #f01b1b;
+    border: none;
+    color: #000000d9;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    justify-content: start;
+    align-items: right;
+    font-size: 16px;
+    margin: 5px ;
+    display: flex;
+    justify-content: flex-start;
+} 
+
+

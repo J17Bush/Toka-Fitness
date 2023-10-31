@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css') }}"> 
+
+
+<body>
+        <div class = "card-body">
+            <h3 id = "about-text">User</h3>
+            <div class = "card" style = "background-color: #ffff; width: fit-content; border-radius: 100px;">
+                <img src ="../static/susman.jpeg" id = "profile-pic">
+            </div>  
+            <div style = "padding-left: 1200px; position: relative;"> 
+            <a href="/logout">
+                <button class = "logbutton">logout</button>
+            </a>
+            </div>
+        </div>
+    <div class = "card m-1 p-1" style = "background-color: #ffff; height: fit-content;">
+        <h4 id = "about-text">User Bio</h4>
+        <p id = "about-text">sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1</p>
+    </div>
+    <div class = "card m-1 p-1" style = "background-color: #ffff; height: fit-content;">
+        <h4 id = "about-text">iJTQUOhcWr7x9JvoRxT2MZw1T</h4>
+        <p id = "about-text">sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1</p>
+        
+</body>
+
+
+
+{% endblock %}

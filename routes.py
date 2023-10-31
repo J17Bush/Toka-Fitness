@@ -33,7 +33,7 @@ def data():
     title = "Data"
     current_session = session.get('user')
     books = db.queryDB('SELECT * FROM Booking_tbl')
-    return render_template('data.html', title=title, books=books) #current_user=current_user
+    return render_template('data.html', title=title, books=books, current_session = current_session) 
 
 
 @app.route("/add", methods=["POST"])
@@ -59,16 +59,20 @@ def delete(Book_ID):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     title = "Log In"
-    current_user = session.get('user')
+    current_session = session.get('user')
 
     if request.method == "POST":
         session.permanent = True
         user = request.form["nm"]
         password = request.form["pword"]
+
         hashed_password = hashlib.md5(str(password).encode()).hexdigest()
+
         found_user = db.queryDB("SELECT * FROM Login_tbl WHERE UserName = ?", [user])
+
         if found_user:
             stored_password = found_user[0][2]
+
             if stored_password == hashed_password:
                 session["user"] = user
                 session["email"] = found_user[0][3]
@@ -78,16 +82,16 @@ def login():
                 flash("Incorrect password.", "danger")
         else:
             flash("User not found.", "danger")
-    
-    if current_user in session:
+    if 'user' in session:
         flash("Already Logged IN!", "info")
-        return redirect(url_for("users"))
+        return redirect(url_for("home"))
     else:
-        return render_template('login.html')
+        return render_template('login.html',title=title,current_session=current_session)
+    return render_template('login.html',title=title,current_session=current_session)
 
 @app.route('/logout')
 def logout():
-    current_user = session.get('user')
+    current_session = session.get('user')
     flash("You have been logged out!", 'danger')
     session.pop("user", None)
     session.pop("email", None)
@@ -96,11 +100,14 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    current_user = session.get('user')
+    title = "register"
+    current_session = session.get('user')
     if request.method == "POST":
         user = request.form["nm"]
         password = request.form["pword"]
         email = request.form["email"]
+        Membership_Type = request.form["mtype"]
+        Profile_Pic = 'susman.png'
 
         hashed_email = hashlib.md5(str(email).encode()).hexdigest()
         hashed_password = hashlib.md5(str(password).encode()).hexdigest()
@@ -110,17 +117,14 @@ def register():
             flash('Email or username already exists, please try a different one', 'danger')
             return redirect(url_for('register'))
         else:
-            db.updateDB("INSERT INTO Login_tbl (UserName,UserEmail,UserPass) VALUES (?,?,?)", [user, hashed_email, hashed_password])
-            return render_template('login.html', title='login')
+            db.updateDB("INSERT INTO Login_tbl (UserName, UserPass, UserEmail, UserMembership) VALUES (?,?,?,?)", [user, hashed_password, hashed_email, Membership_Type])
+            return render_template('login.html',title=title,current_session=current_session)
     else:
-        return render_template('register.html', title='Register')
+        return render_template('register.html',title=title,current_session=current_session)
 
-# @app.route('/logout')
-# def logout():
-#     current_user = session.get('user')
-#     flash("You have been logged out!", 'danger')
-#     session.pop("user", None)
-#     session.pop("email", None)
-#     session.pop("password", None)
-#     return redirect(url_for("home"))
 
+@app.route('/user')
+def user():
+    title= "Users"
+    current_session = session.get('user')
+    return render_template('user.html',title=title,current_session=current_session)

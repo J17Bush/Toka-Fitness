@@ -5,11 +5,17 @@
     <form action ="/register" method ="POST">
         <h2> This is a register page</h2>
         <p> User Name</p>
-        <p><input type ="text" id = "nm" name ="nm"/></p>
+        <p><input type ="text" id = "nm" name ="nm" required='true'/></p>
         <p>Email</p>
-        <p><input type ="text" id = "email" name ="email"></p>
+        <p><input type ="email" id = "email" name ="email" required='true'></p>
         <p>Password</p>
-        <p><input type="text" name="pword" id="pword"></p>
+        <p><input type="text" name="pword" id="pword" required='true'></p>
+        <select type = "text" class="form-control" id="mtype" name="mtype" required="True">
+            <option value="" disabled selected>Select Membership</option>
+            <option value="Student">Student</option>
+            <option value="Yearly">Yearly</option>
+            <option value="Monthly">Monthly</option>
+        </select>
         <button type=" submit" name ="submit">submit</button>
     </form> 
 
