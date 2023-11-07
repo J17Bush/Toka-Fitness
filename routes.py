@@ -5,6 +5,7 @@ from db_connecter import database
 import requests
 import hashlib
 
+
 #defines our database
 db = database ()
 
@@ -12,19 +13,19 @@ db = database ()
 
 @app.route('/')
 def home():
-    title = "Home"
+    title = ""
     current_session = session.get('user')
     return render_template('index.html',title=title,current_session=current_session)
 
-@app.route('/trainer')
+@app.route('/Training Videos')
 def about():
-    title= "Trainers"
+    title= "Training videos"
     current_session = session.get('user')
     return render_template('trainer.html',title=title,current_session=current_session)
 
 @app.route('/Home')
 def backtohomepage():
-    title= 'Home'
+    title= ''
     current_session = session.get('user')
     return redirect(url_for("home"))
 
@@ -128,3 +129,9 @@ def user():
     title= "Users"
     current_session = session.get('user')
     return render_template('user.html',title=title,current_session=current_session)
+
+@app.route('/Accessibility')
+def Accessibility():
+    title= "Accessibility"
+    current_session = session.get('user')
+    return render_template('Accessibility.html',title=title,current_session=current_session)
