@@ -49,6 +49,15 @@ class database:
 
             cur.execute("UPDATE Books SET complete = ? WHERE book_ID = ?", (new_complete_status, Book_ID))
             conn.commit()
+            
+        def get_table_structure(self, table_name):
+            conn = self.connect()
+            cur = conn.cursor()
+            cur.execute(f"PRAGMA table_info({table_name})"
+            table_info = cur.fetchall()
+            field_names = [info[1] for info in table_info]
+            self.disconnect()
+            return field_names
 #################################################
 #This closes the database
     def disconnect(self,conn):
